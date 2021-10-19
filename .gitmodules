@@ -1,0 +1,3 @@
+[submodule "brave-browser"]
+	path = brave-browser
+	url = https://github.com/brave/brave-browser

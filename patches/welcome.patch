@@ -1,0 +1,85 @@
+diff --git a/components/brave_welcome_ui/brave_welcome.html b/components/brave_welcome_ui/brave_welcome.html
+index 8036a0a512..dfb3ef716c 100644
+--- a/components/brave_welcome_ui/brave_welcome.html
++++ b/components/brave_welcome_ui/brave_welcome.html
+@@ -4,10 +4,12 @@
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width">
+ <if expr="not is_android">
+-  <title>$i18n{headerText}</title>
++  <!-- <title>$i18n{headerText}</title> -->
++  <title>Welcome to the Red Panda Browser</title>
+ </if>
+ <if expr="is_android">
+-  <title>Welcome to Brave</title>
++  <!-- <title>Welcome to Brave</title> -->
++  <title>Welcome to the Red Panda Browser</title>
+ </if>
+ <link rel="stylesheet" href="chrome://resources/css/text_defaults.css">
+ <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+diff --git a/components/brave_welcome_ui/components/images/index.ts b/components/brave_welcome_ui/components/images/index.ts
+index 74bcfabe1b..bc22314090 100644
+--- a/components/brave_welcome_ui/components/images/index.ts
++++ b/components/brave_welcome_ui/components/images/index.ts
+@@ -4,6 +4,7 @@
+ 
+ import styled, { keyframes } from 'styled-components'
+ 
++import RedPandaImage from './red-panda.jpg'
+ import LionImage from './lion_logo.svg'
+ import ImportImage from './welcome_import.svg'
+ import RewardsImage from './welcome_rewards.svg'
+@@ -17,6 +18,11 @@ const BaseImage = styled('img')<{}>`
+   max-width: 100%;
+ `
+ 
++export const WelcomeRedPandaImage = styled(BaseImage).attrs({ src: RedPandaImage })`
++  height: 250px;
++  border-radius: 8px;
++`
++
+ export const WelcomeLionImage = styled(BaseImage).attrs({ src: LionImage })`
+   height: 140px;
+ `
+diff --git a/components/brave_welcome_ui/containers/screens/welcomeBox.tsx b/components/brave_welcome_ui/containers/screens/welcomeBox.tsx
+index f98b48cd70..f8911e1209 100644
+--- a/components/brave_welcome_ui/containers/screens/welcomeBox.tsx
++++ b/components/brave_welcome_ui/containers/screens/welcomeBox.tsx
+@@ -11,10 +11,12 @@ import { Content, Title, Paragraph, PrimaryButton } from '../../components'
+ import { ArrowRightIcon } from 'brave-ui/components/icons'
+ 
+ // Images
+-import { WelcomeLionImage } from '../../components/images'
++// import WelcomeRedPandaImage from '../../components/images/red-panda.jpg'
++import { WelcomeRedPandaImage } from '../../components/images'
++// import { WelcomeLionImage } from '../../components/images'
+ 
+ // Utils
+-import { getLocale } from '../../../common/locale'
++// import { getLocale } from '../../../common/locale'
+ 
+ interface Props {
+   index: number
+@@ -32,14 +34,18 @@ export default class ThemingBox extends React.PureComponent<Props, {}> {
+         screenPosition={'1' + (index + 1) + '0%'}
+         isPrevious={index <= currentScreen}
+       >
+-        <WelcomeLionImage />
+-        <Title>{getLocale('welcome')}</Title>
+-        <Paragraph>{getLocale('whatIsBrave')}</Paragraph>
++        <WelcomeRedPandaImage />
++        {/*<WelcomeLionImage />*/}
++        {/*<Title>{getLocale('welcome')}</Title>*/}
++        <Title>Welcome to the Red Panda Browser!</Title>
++        {/*<Paragraph>{getLocale('whatIsBrave')}</Paragraph>*/}
++        <Paragraph>Get ready to browse the internet with Red Panda superpowers! ;)</Paragraph>
+         <PrimaryButton
+           level='primary'
+           type='accent'
+           size='large'
+-          text={getLocale('letsGo')}
++          /*text={getLocale('letsGo')}*/
++          text="WOOF!"
+           onClick={onClick}
+           icon={{ position: 'after', image: <ArrowRightIcon /> }}
+         />

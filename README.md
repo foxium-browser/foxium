@@ -28,7 +28,7 @@ cd ..
 
 # Build
 cd brave-browser
-CC_WRAPPER=ccache npm run build Component
+npm run build Component
 
 # Start
 npm start Component

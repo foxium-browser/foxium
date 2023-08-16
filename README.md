@@ -1,41 +1,13 @@
 # Foxium
 
-Brave without the bullshit
+Brave without the bullshit.
 
 ## Summary
 
-Brave is a great browser. However, there are quite a few aspects I strongly dislike about it. This repository addresses my concerns by providing a process to patch up things I disagree with
+This project originally aimed to patch brave to make it less annoying. However, I have recently learned that important features such as ad-blocking [require configuration and signing keys](https://community.brave.com/t/does-brave-allow-the-distribution-of-self-compiled-or-distro-compiled-binaries/457833/7) that only the official build farms have setup.
+
+Now, this project aims to research if [adblock-rust](https://github.com/brave/adblock-rust) can be integrated within [Chromium](https://www.chromium.org) or [ungoogled-chromium](https://github.com/ungoogled-software/ungoogled-chromium/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc).
 
 ## Building
 
-See the Brave [README](https://github.com/brave/brave-browser/blob/master/README.md) or their [Wiki](https://github.com/brave/brave-browser/wiki/Linux-Development-Environment) for more information
-
-```sh
-# Clone this project
-git clone https://github.com/foxium-browser/foxium
-cd foxium
-git submodule update --init
-
-# Clone brave-browser
-cd brave-browser
-npm install
-npm run init # This may take a while
-./src/build/install-build-deps.sh
-
-# Apply patches
-cd ..
-./patches/apply.sh
-
-# Build
-cd brave-browser
-npm run build Component
-
-# Start
-npm start Component
-```
-
-## Roadmap
-
-- Actually patch some things out (right now, the patches are only for testing purposes)
-- CI/CD
-- Autopull and autopatch
+See [building.md](./docs/building.md).
